@@ -53,9 +53,12 @@ const ProductSchema = new Schema(
 
     productCars: {
       type: [{ type: Schema.Types.ObjectId, ref: "ProductCar" }],
-      required: true,
+      required: false,
     },
   },
 
   { timestamps: true }
 );
+
+const Product = model("Product", ProductSchema);
+module.exports = Product;
