@@ -51,10 +51,10 @@ const ProductSchema = new Schema(
 
     userId: { type: Schema.Types.ObjectId, ref: "User", require: true },
 
-    productCars: {
-      type: [{ type: Schema.Types.ObjectId, ref: "ProductCar" }],
-      required: false,
-    },
+    // productCars: {
+    //   type: [{ type: Schema.Types.ObjectId, ref: "ProductCar" }],
+    //   required: false,
+    // },
   },
 
   { timestamps: true }
