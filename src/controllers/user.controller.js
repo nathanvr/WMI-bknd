@@ -6,6 +6,7 @@ module.exports = {
   async create(req, res) {
     try {
       const data = req.body;
+
       const encPassword = await bcrypt.hash(data.password, 8);
       const newUser = { ...data, password: encPassword };
       const user = await User.create(newUser);
@@ -45,17 +46,22 @@ module.exports = {
         .status(200)
         .json({ message: "User loggin successfully", data: token });
     } catch (err) {
-      res.status(400).json({ message: "User cannot loginin" });
+      res.status(400).json({ message: "User cannot loginin", data: err });
     }
   },
   //update
   async update(req, res) {
     try {
+      const userId = req.user;
+      const user = await User.findByIdAndUpdate(userId, req.body, {
+        new: true,
+        runValidators: true,
+        context: "query",
+      });
+
+      res.status(200).json({ message: "User updated", data: user });
     } catch (err) {
-      res.status(400).json({ message: "" });
+      res.status(400).json({ message: "user can't be updated", data: err });
     }
   },
-  //recovery password
-  //reset password
-  //change password
 };
