@@ -21,6 +21,24 @@ module.exports = {
     }
   },
 
+  async show(req, res) {
+    try {
+      const id = req.user;
+      console.log("este es el id", id);
+      const user = await User.findById(id)
+        .select("-_id -password")
+        .populate({ path: "products" });
+
+      if (!user) {
+        throw new Error("Invalid user");
+      }
+
+      res.status(200).json({ message: "User found", data: user });
+    } catch (err) {
+      res.status(400).json({ message: "Can't find the User", data: err });
+    }
+  },
+
   //signin
   async signin(req, res) {
     try {

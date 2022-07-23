@@ -62,9 +62,9 @@ const userSchema = new Schema(
       required: false,
     },
 
-    car: {
-      type: Schema.Types.ObjectId,
-      ref: "Car",
+    orders: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+      required: false,
     },
   },
   { timestamp: true }
