@@ -15,7 +15,10 @@ module.exports = {
         expiresIn: 60 * 60 * 24,
       });
 
-      res.status(201).json({ message: "User created", data: user });
+      res.status(201).json({
+        message: "User created",
+        data: { token, user: user },
+      });
     } catch (err) {
       res.status(400).json({ message: "User cant be created", data: err });
     }

@@ -12,10 +12,12 @@ const userSchema = new Schema(
     name: {
       type: String,
       require: true,
+      minlength: [2, "lastname too short"],
     },
     lastname: {
       type: String,
       require: true,
+      minlength: [2, "lastname too short"],
     },
     email: {
       type: String,
@@ -41,12 +43,12 @@ const userSchema = new Schema(
 
     phone: {
       type: Number,
-      required: true,
+      required: false,
     },
 
     city: {
       type: String,
-      required: true,
+      required: false,
     },
 
     member: {
