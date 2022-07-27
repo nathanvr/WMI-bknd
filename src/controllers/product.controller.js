@@ -22,6 +22,8 @@ module.exports = {
   },
 
   async create(req, res) {
+    const listKeys = Object.values(req.body);
+
     try {
       const id = req.user;
       const user = await User.findById(id);
@@ -29,10 +31,18 @@ module.exports = {
       if (!user) {
         throw new Error("Invalid user");
       }
+
       const product = await Product.create({
         ...req.body,
         userId: user._id,
       });
+
+      // for (let i = 0; i < listKeys.length; i++) {
+      //   if (listKeys[i].secure_url !== undefined) {
+      //     await product.image.push(listKeys[i].secure_url);
+      //     await product.save({ validateBeforeSave: false });
+      //   }
+      // }
 
       await user.products.push(product);
       await user.save({ validateBeforeSave: false });

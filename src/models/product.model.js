@@ -35,7 +35,7 @@ const ProductSchema = new Schema(
     },
 
     image: {
-      type: String,
+      type: Object,
       required: true,
     },
 
@@ -45,7 +45,7 @@ const ProductSchema = new Schema(
     },
 
     available: {
-      type: Boolean,
+      type: String,
       required: true,
     },
 
